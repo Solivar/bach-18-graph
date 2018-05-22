@@ -3,12 +3,12 @@ import matplotlib.pyplot as plt
 import glob
 import os
 
-identificator = "N"
+key = "N"
 
 path = './log/*'
 files = glob.glob(path)
 nodes = []
-G = nx.Graph()
+G = nx.DiGraph()
 
 for file in files:
     f = open(file, 'r')
@@ -17,11 +17,11 @@ for file in files:
     nodes.append(nodeId)
 
     for line in f:
-      values = line.split(' ')
-      values = map(str.rstrip, values)
+        values = line.split(' ')
+        values = map(str.rstrip, values)
 
-      if line[0] == identificator:
-        G.add_edge(nodeId, values[1]),
+        if line[0] == key:
+            G.add_edge(nodeId, values[1]),
 
     f.close()
 
