@@ -39,6 +39,6 @@ for node in nodes:
     for neighbour in node.neighbours:
         G.add_edge(node.id, neighbour)
 
-nx.draw(G, with_labels=True)
+nx.draw(G, with_labels=True, font_size=10, node_size=1000, linewidths=0)
 
 plt.show()
