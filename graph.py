@@ -27,10 +27,12 @@ for file in files:
             if not nodeId:
                 nodeId = values[1]
 
+                # if the read node has not been read yet
                 if not any(node.id == nodeId for node in nodes):
                     node = graph_node.Node(nodeId)
                     nodes.append(node)
 
+            # find the node from node list
             node = filter(lambda node: node.id == nodeId, nodes)[0]
 
             if neighbour not in node.neighbours:
