@@ -11,6 +11,8 @@ nodes = []
 node_list = []
 edge_list = []
 G = nx.MultiDiGraph()
+missed_messages = 0
+missing_neighbours = {}
 
 for file in files:
     nodeId = ""
@@ -20,6 +22,16 @@ for file in files:
         values = line.split(' ')
         values[0] = values[0].replace('\r', '')
         values[-1] = values[-1].replace('\n', '')
+
+        # Gather data about missed messages
+        if values[0] == 'M':
+            neighbour = values[2]
+            missed_messages = missed_messages + 1
+
+            if neighbour not in missing_neighbours:
+                missing_neighbours[neighbour] = 1
+            else:
+                missing_neighbours[neighbour] = missing_neighbours[neighbour] + 1
 
         if values[0] == key:
             neighbour = values[2]
@@ -58,5 +70,8 @@ nx.draw(G, pos,
         node_size=1000, node_color='#bcfcb8',
         linewidths=0,
         edge_color='#474747', edge_alpha=0.1)
+
+print missed_messages
+print missing_neighbours
 
 plt.show()
