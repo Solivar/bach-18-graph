@@ -1,2 +1,2 @@
-# graph-bach-18
+# bach-18-graph
 Graph nodes loaded from log files
